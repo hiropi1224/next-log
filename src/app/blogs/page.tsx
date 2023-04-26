@@ -21,6 +21,7 @@ export default async function Blogs(): Promise<JSX.Element> {
             key={content.id}
             title={content.title}
             image={content.eyecatch.url}
+            createdAt={content.createdAt}
           />
         ))}
       </main>
