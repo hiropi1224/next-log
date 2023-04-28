@@ -2279,6 +2279,11 @@ prelude-ls@^1.2.1:
   resolved "https://registry.yarnpkg.com/prelude-ls/-/prelude-ls-1.2.1.tgz#debc6489d7a6e6b0e7611888cec880337d316396"
   integrity sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==
 
+prettier-plugin-tailwindcss@^0.2.7:
+  version "0.2.7"
+  resolved "https://registry.yarnpkg.com/prettier-plugin-tailwindcss/-/prettier-plugin-tailwindcss-0.2.7.tgz#2314d728cce9c9699ced41a01253eb48b4218da5"
+  integrity sha512-jQopIOgjLpX+y8HeD56XZw7onupRTC0cw7eKKUimI7vhjkPF5/1ltW5LyqaPtSyc8HvEpvNZsvvsGFa2qpa59w==
+
 prettier@^2.8.8:
   version "2.8.8"
   resolved "https://registry.yarnpkg.com/prettier/-/prettier-2.8.8.tgz#e8c5d7e98a4305ffe3de2e1fc4aca1a71c28b1da"
@@ -2659,10 +2664,17 @@ tabbable@^6.0.1:
   resolved "https://registry.yarnpkg.com/tabbable/-/tabbable-6.1.1.tgz#40cfead5ed11be49043f04436ef924c8890186a0"
   integrity sha512-4kl5w+nCB44EVRdO0g/UGoOp3vlwgycUVtkk/7DPyeLZUCuNFFKCFG6/t/DgHLrUPHjrZg6s5tNm+56Q2B0xyg==
 
-tailwind-merge@^1.9.1:
+tailwind-merge@^1.10.0, tailwind-merge@^1.9.1:
   version "1.12.0"
   resolved "https://registry.yarnpkg.com/tailwind-merge/-/tailwind-merge-1.12.0.tgz#747d09d64a25a4864150e8930f8e436866066cc8"
   integrity sha512-Y17eDp7FtN1+JJ4OY0Bqv9OA41O+MS8c1Iyr3T6JFLnOgLg3EvcyMKZAnQ8AGyvB5Nxm3t9Xb5Mhe139m8QT/g==
+
+tailwind-variants@^0.1.4:
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/tailwind-variants/-/tailwind-variants-0.1.4.tgz#69d00f3779113a9c4a3a08e44ec0576e157c9d39"
+  integrity sha512-SALzIF6O3AdklYhHhAwAfWczOIo/BNHqV/617tD7gKGseAbO2cz+rZJ5Lst711GtkulU6Xf/yKBSFLmC+TRfxA==
+  dependencies:
+    tailwind-merge "^1.10.0"
 
 tailwindcss@3.3.1:
   version "3.3.1"
