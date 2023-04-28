@@ -1,5 +1,7 @@
+import { Fragment } from 'react';
 import { client } from '@/app/libs/client';
 import { BlogsResult } from '@/app/type';
+import { ContentCard } from '@/app/components/ContentCard';
 import { CustomCard } from '@/app/components/CustomCard';
 
 async function getData() {
@@ -17,12 +19,18 @@ export default async function Blogs(): Promise<JSX.Element> {
     <div>
       <main>
         {data.contents.map((content) => (
-          <CustomCard
-            key={content.id}
-            title={content.title}
-            image={content.eyecatch.url}
-            createdAt={content.createdAt}
-          />
+          <Fragment key={content.id}>
+            <CustomCard
+              title={content.title}
+              image={content.eyecatch.url}
+              createdAt={content.createdAt}
+            />
+            <ContentCard
+              title={content.title}
+              image={content.eyecatch.url}
+              createdAt={content.createdAt}
+            />
+          </Fragment>
         ))}
       </main>
     </div>
