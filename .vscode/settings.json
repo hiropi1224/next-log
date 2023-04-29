@@ -31,5 +31,8 @@
   "[typescriptreact]": {
     "editor.formatOnSave": true
   },
-  "explorer.compactFolders": false
+  "explorer.compactFolders": false,
+  "tailwindCSS.experimental.classRegex": [
+    ["tv\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"]
+  ]
 }
