@@ -6,7 +6,7 @@ const header = tv({
     base: 'flex items-center justify-between py-4 md:py-8',
     logo: 'text-black-800 inline-flex items-center gap-2.5 text-2xl font-bold md:text-3xl',
     svg: 'h-auto w-6 text-indigo-500',
-    nav: 'hidden gap-12 lg:flex',
+    nav: 'hidden gap-12 lg:flex mx-4',
     navItem:
       'text-lg font-semibold text-gray-600 transition duration-100 hover:text-indigo-500 active:text-indigo-700',
   },
@@ -31,18 +31,18 @@ export const Header: React.FC = () => {
         Next log
       </div>
       <nav className={nav()}>
-        <a href='/' className={navItem()}>
+        <Link href='/' className={navItem()}>
           Home
-        </a>
+        </Link>
         <Link href='/blogs' className={navItem()}>
           Tech
         </Link>
-        <a href='/' className={navItem()}>
-          Other
-        </a>
-        <a href='/' className={navItem()}>
+        <Link href='/health' className={navItem()}>
+          Health
+        </Link>
+        <Link href='/' className={navItem()}>
           About
-        </a>
+        </Link>
       </nav>
     </header>
   );
