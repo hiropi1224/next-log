@@ -28,3 +28,17 @@ interface Eyecatch {
   height: number;
   width: number;
 }
+
+export interface Health {
+  birth_date: string;
+  data: Datum[];
+  height: string;
+  sex: string;
+}
+
+interface Datum {
+  date: string;
+  keydata: string;
+  model: string;
+  tag: string;
+}
