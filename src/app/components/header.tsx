@@ -40,6 +40,9 @@ export const Header: React.FC = () => {
         <Link href='/health' className={navItem()}>
           Health
         </Link>
+        <Link href='/activity' className={navItem()}>
+          Activity
+        </Link>
         <Link href='/' className={navItem()}>
           About
         </Link>
