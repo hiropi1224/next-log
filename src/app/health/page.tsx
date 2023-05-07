@@ -4,7 +4,7 @@ import { Health } from '@/app/type';
 
 async function getData() {
   const res = await fetch(
-    `https://www.healthplanet.jp/status/innerscan.json?access_token=${process.env.healthplanetAccessToken}&data=0`
+    `${process.env.healthplanetEndpoint}?access_token=${process.env.healthplanetAccessToken}&data=0`
   );
   const data: Health = await res.json();
 
