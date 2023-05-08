@@ -40,7 +40,10 @@ export const Header: React.FC = () => {
         <Link href='/health' className={navItem()}>
           Health
         </Link>
-        <Link href='/activity' className={navItem()}>
+        <Link href='/dashboard' className={navItem()}>
+          Dashboard
+        </Link>
+        <Link href='/' className={navItem()}>
           Activity
         </Link>
         <Link href='/' className={navItem()}>
