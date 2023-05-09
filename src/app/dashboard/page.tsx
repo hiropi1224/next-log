@@ -1,6 +1,7 @@
 import { tv } from 'tailwind-variants';
 import { DashboardShell } from '@/app/components/dashboardShell';
-import { DashboardTable } from '@/app/components/dashboardTable';
+import { PaceZoneTable } from '@/app/components/paceZoneTable';
+import { PersonalRecordTable } from '@/app/components/personalRecordTable';
 
 const contents = tv({
   slots: {
@@ -15,7 +16,8 @@ export default async function Blogs(): Promise<JSX.Element> {
   return (
     <main className={base()}>
       <DashboardShell>
-        <DashboardTable />
+        <PersonalRecordTable />
+        <PaceZoneTable />
       </DashboardShell>
     </main>
   );

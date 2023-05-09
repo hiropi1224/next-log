@@ -16,7 +16,7 @@ import { formatTime } from '@/app/utils/formatTime';
 import { metersToKilometers } from '@/app/utils/metersToKilometers';
 import { secondsToMinSecPerKm } from '@/app/utils/secondsToMinSecPerKm';
 
-export const DashboardTable: React.FC = () => {
+export const PersonalRecordTable: React.FC = () => {
   return (
     <Card>
       <Title>パーソナルレコード(PR)</Title>
