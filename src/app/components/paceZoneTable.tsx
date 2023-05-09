@@ -50,7 +50,7 @@ export const PaceZoneTable: React.FC = () => {
               <TableCell>
                 <Flex className={flex()}>
                   <FireIcon className={icon({ className: `${color[i]}` })} />
-                  <Text>{item.zone}</Text>
+                  <Text>{`Zone ${item.zone}`}</Text>
                 </Flex>
               </TableCell>
               <TableCell>{item.pace}</TableCell>
