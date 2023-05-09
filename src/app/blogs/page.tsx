@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { tv } from 'tailwind-variants';
 import { client } from '@/app/libs/client';
 import { BlogsResult } from '@/app/type';
@@ -28,11 +29,13 @@ export default async function Blogs(): Promise<JSX.Element> {
     <main className={base()}>
       {data.contents.map((content) => (
         <div key={content.id} className={area()}>
-          <ContentCard
-            title={content.title}
-            image={content.eyecatch.url}
-            createdAt={content.createdAt}
-          />
+          <Link href={`/blogs/${content.id}`}>
+            <ContentCard
+              title={content.title}
+              image={content.eyecatch.url}
+              createdAt={content.createdAt}
+            />
+          </Link>
         </div>
       ))}
     </main>

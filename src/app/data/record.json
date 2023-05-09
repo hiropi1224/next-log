@@ -1,0 +1,70 @@
+[
+    {
+        "avgPace": 210,
+        "distance": 42195,
+        "duration": 8844,
+        "happenDay": 20170212,
+        "name": "リビング×メ～テレ マラソンパラダイス2017",
+        "type": 1
+    },
+    {
+        "avgPace": 206,
+        "distance": 21097.5,
+        "duration": 4343,
+        "happenDay": 20161127,
+        "labelId": 449109640316223500,
+        "labelIdStr": "449109640316223489",
+        "name": "昭島市 ラン",
+        "type": 2
+    },
+    {
+        "avgPace": 204,
+        "distance": 10000,
+        "duration": 2036,
+        "happenDay": 20161008,
+        "labelId": 444914786560409600,
+        "labelIdStr": "444914786560409600",
+        "name": "調布市 ラン",
+        "type": 4
+    },
+    {
+        "avgPace": 181,
+        "distance": 5000,
+        "duration": 907,
+        "happenDay": 20131109,
+        "labelId": 444712185445253100,
+        "labelIdStr": "444712185445253120",
+        "name": "東京 トラックラン",
+        "type": 5
+    },
+    {
+        "avgPace": 175,
+        "distance": 3000,
+        "duration": 526,
+        "happenDay": 20220807,
+        "labelId": 445561614815494140,
+        "labelIdStr": "445561614815494144",
+        "name": "御殿場市 ラン",
+        "type": 6
+    },
+    {
+        "avgPace": 164,
+        "distance": 1500,
+        "duration": 246,
+        "happenDay": 20190623,
+        "labelId": 444565456469131260,
+        "labelIdStr": "444565456469131264",
+        "name": "東京 ラン",
+        "type": 7
+    },
+    {
+        "avgPace": 326,
+        "distance": "20kmW",
+        "duration": 6520,
+        "happenDay": 20200101,
+        "labelId": 444565456469131260,
+        "labelIdStr": "444565456469131264",
+        "name": "東京 ラン",
+        "type": 7
+    }
+]
