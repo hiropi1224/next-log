@@ -1,4 +1,5 @@
 import { tv } from 'tailwind-variants';
+import { BlogShell } from '@/app/components/blogShell';
 import { client } from '@/app/libs/client';
 import { BlogsResult } from '@/app/type';
 async function getBlogDetail(id: string) {
@@ -12,12 +13,12 @@ async function getBlogDetail(id: string) {
 
 const contents = tv({
   slots: {
-    base: 'mx-auto max-w-screen-lg px-4 md:px-8',
-    area: 'm-2',
+    base: 'mx-auto max-w-screen-2xl px-4 md:px-8',
+    article: 'prose prose-base max-w-none',
   },
 });
 
-const { base } = contents();
+const { base, article } = contents();
 
 type PageProps = {
   params: {
@@ -33,7 +34,21 @@ export default async function BlogDetail({
   return (
     <main className={base()}>
       {data.contents.map((content) => (
-        <p key={content.id}>{content.title}</p>
+        <div key={content.id}>
+          <BlogShell
+            title={content.title}
+            content={
+              <article className={article()}>
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: content.content,
+                  }}
+                />
+              </article>
+            }
+            sidebar={<p>sidebar</p>}
+          />
+        </div>
       ))}
     </main>
   );
