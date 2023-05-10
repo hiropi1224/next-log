@@ -1,6 +1,8 @@
 import { tv } from 'tailwind-variants';
 import { BlogShell } from '@/app/components/blogShell';
+import { TableOfContents } from '@/app/components/tableOfContents';
 import { client } from '@/app/libs/client';
+import { renderToc } from '@/app/libs/renderToc';
 import { BlogsResult } from '@/app/type';
 async function getBlogDetail(id: string) {
   const res: BlogsResult = await client.get({
@@ -30,6 +32,7 @@ export default async function BlogDetail({
   params,
 }: PageProps): Promise<JSX.Element> {
   const data = await getBlogDetail(params.id);
+  const toc = renderToc(data.contents[0].content);
 
   return (
     <main className={base()}>
@@ -46,7 +49,12 @@ export default async function BlogDetail({
                 />
               </article>
             }
-            sidebar={<p>sidebar</p>}
+            sidebar={
+              <>
+                <p>sidebar</p>
+                <TableOfContents toc={toc} contentId={content.id} />
+              </>
+            }
           />
         </div>
       ))}
