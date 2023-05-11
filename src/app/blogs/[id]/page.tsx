@@ -1,17 +1,9 @@
 import { tv } from 'tailwind-variants';
 import { BlogShell } from '@/app/components/blogShell';
 import { TableOfContents } from '@/app/components/tableOfContents';
-import { client } from '@/app/libs/client';
+import { client, getDetail } from '@/app/libs/microcmsClient';
 import { renderToc } from '@/app/libs/renderToc';
 import { BlogsResult } from '@/app/type';
-async function getBlogDetail(id: string) {
-  const res: BlogsResult = await client.get({
-    endpoint: 'blogs',
-    queries: { ids: id },
-  });
-
-  return res;
-}
 
 const contents = tv({
   slots: {
@@ -31,33 +23,31 @@ type PageProps = {
 export default async function BlogDetail({
   params,
 }: PageProps): Promise<JSX.Element> {
-  const data = await getBlogDetail(params.id);
-  const toc = renderToc(data.contents[0].content);
+  const data = await getDetail(params.id);
+  const toc = renderToc(data.content);
 
   return (
     <main className={base()}>
-      {data.contents.map((content) => (
-        <div key={content.id}>
-          <BlogShell
-            title={content.title}
-            content={
-              <article className={article()}>
-                <div
-                  dangerouslySetInnerHTML={{
-                    __html: content.content,
-                  }}
-                />
-              </article>
-            }
-            sidebar={
-              <>
-                <p>sidebar</p>
-                <TableOfContents toc={toc} contentId={content.id} />
-              </>
-            }
-          />
-        </div>
-      ))}
+      <div>
+        <BlogShell
+          title={data.title}
+          content={
+            <article className={article()}>
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: data.content,
+                }}
+              />
+            </article>
+          }
+          sidebar={
+            <>
+              <p>sidebar</p>
+              <TableOfContents toc={toc} contentId={data.id} />
+            </>
+          }
+        />
+      </div>
     </main>
   );
 }
