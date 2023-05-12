@@ -1,5 +1,4 @@
 import { tv } from 'tailwind-variants';
-import { BlogShell } from '@/app/components/blogShell';
 import { TableOfContents } from '@/app/components/tableOfContents';
 import { client, getDetail } from '@/app/libs/microcmsClient';
 import { renderToc } from '@/app/libs/renderToc';
@@ -7,12 +6,14 @@ import { BlogsResult } from '@/app/type';
 
 const contents = tv({
   slots: {
-    base: 'mx-auto max-w-screen-2xl px-4 md:px-8',
-    article: 'prose prose-base max-w-none',
+    base: 'mx-auto max-w-screen-xl px-4 md:px-8 flex justify-between',
+    article: 'prose prose-base',
+    section: 'w-[calc(100% - 330px)]',
+    aside: 'w-[300px]',
   },
 });
 
-const { base, article } = contents();
+const { base, article, section, aside } = contents();
 
 type PageProps = {
   params: {
@@ -28,26 +29,18 @@ export default async function BlogDetail({
 
   return (
     <main className={base()}>
-      <div>
-        <BlogShell
-          title={data.title}
-          content={
-            <article className={article()}>
-              <div
-                dangerouslySetInnerHTML={{
-                  __html: data.content,
-                }}
-              />
-            </article>
-          }
-          sidebar={
-            <>
-              <p>sidebar</p>
-              <TableOfContents toc={toc} contentId={data.id} />
-            </>
-          }
-        />
-      </div>
+      <section className={section()}>
+        <article className={article()}>
+          <div
+            dangerouslySetInnerHTML={{
+              __html: data.content,
+            }}
+          />
+        </article>
+      </section>
+      <aside className={aside()}>
+        <TableOfContents toc={toc} contentId={data.id} />
+      </aside>
     </main>
   );
 }
