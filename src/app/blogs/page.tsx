@@ -5,8 +5,8 @@ import { ContentCard } from '@/app/components/ContentCard';
 
 const contents = tv({
   slots: {
-    base: 'mx-auto max-w-screen-lg px-4 md:px-8',
-    area: 'm-2',
+    base: 'mx-auto max-w-screen-lg px-4 flex flex-wrap items-start justify-between',
+    area: 'm-2 md:w-[47%] w-full',
   },
 });
 

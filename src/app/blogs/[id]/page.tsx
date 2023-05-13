@@ -8,13 +8,13 @@ import { BlogsResult } from '@/app/type';
 const contents = tv(
   {
     slots: {
-      base: 'mx-auto max-w-screen-xl px-4',
+      base: 'mx-auto max-w-screen-xl w-5/6 px-4',
       content: 'flex justify-between',
       article: 'prose prose-sm max-w-none',
       section: '',
       aside: '',
       font: 'text-3xl',
-      header: 'my-10',
+      header: 'my-10 text-center',
     },
     variants: {
       style: {

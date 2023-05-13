@@ -1,18 +1,41 @@
 import Link from 'next/link';
 import { tv } from 'tailwind-variants';
 
-const header = tv({
-  slots: {
-    base: 'flex items-center justify-between py-4 md:py-8',
-    logo: 'text-black-800 inline-flex items-center gap-2.5 text-2xl font-bold md:text-3xl',
-    svg: 'h-auto w-6 text-indigo-500',
-    nav: 'hidden gap-12 lg:flex mx-4',
-    navItem:
-      'text-lg font-semibold text-gray-600 transition duration-100 hover:text-indigo-500 active:text-indigo-700',
+const header = tv(
+  {
+    slots: {
+      base: 'flex items-center justify-between py-4 md:py-8',
+      logo: 'text-black-800 inline-flex items-center gap-2.5 text-2xl font-bold md:text-3xl',
+      svg: 'h-auto w-6 text-indigo-500',
+      nav: 'gap-12 mx-4',
+      navItem:
+        'text-lg font-semibold text-gray-600 transition duration-100 hover:text-indigo-500 active:text-indigo-700',
+      menu: '',
+    },
+    variants: {
+      style: {
+        pc: {
+          nav: 'flex',
+          menu: 'hidden',
+        },
+        sp: {
+          nav: 'hidden',
+          menu: '',
+        },
+      },
+    },
+  },
+  {
+    responsiveVariants: ['md'],
+  }
+);
+
+const { base, logo, svg, nav, navItem, menu } = header({
+  style: {
+    initial: 'sp',
+    md: 'pc',
   },
 });
-
-const { base, logo, svg, nav, navItem } = header();
 
 export const Header: React.FC = () => {
   return (
@@ -50,6 +73,9 @@ export const Header: React.FC = () => {
           About
         </Link>
       </nav>
+      <div className={menu()}>
+        <button>...</button>
+      </div>
     </header>
   );
 };
