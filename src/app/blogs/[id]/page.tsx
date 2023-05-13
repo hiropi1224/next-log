@@ -5,19 +5,41 @@ import { client, getDetail } from '@/app/libs/microcmsClient';
 import { renderToc } from '@/app/libs/renderToc';
 import { BlogsResult } from '@/app/type';
 
-const contents = tv({
-  slots: {
-    base: 'mx-auto max-w-screen-xl px-4 md:px-8',
-    content: 'flex justify-between',
-    article: 'prose prose-sm max-w-none',
-    section: 'w-3/4 mr-8',
-    aside: 'w-1/4',
-    font: 'text-3xl',
-    header: 'my-10',
+const contents = tv(
+  {
+    slots: {
+      base: 'mx-auto max-w-screen-xl px-4',
+      content: 'flex justify-between',
+      article: 'prose prose-sm max-w-none',
+      section: '',
+      aside: '',
+      font: 'text-3xl',
+      header: 'my-10',
+    },
+    variants: {
+      style: {
+        pc: {
+          section: 'w-3/4 mr-8',
+          aside: 'w-1/4 block',
+        },
+        sp: {
+          section: 'w-full',
+          aside: 'hidden',
+        },
+      },
+    },
+  },
+  {
+    responsiveVariants: ['md'],
+  }
+);
+
+const { base, article, content, section, aside, font, header } = contents({
+  style: {
+    initial: 'sp',
+    md: 'pc',
   },
 });
-
-const { base, article, content, section, aside, font, header } = contents();
 
 type PageProps = {
   params: {
@@ -38,13 +60,12 @@ export default async function BlogDetail({
       </header>
       <div className={content()}>
         <section className={section()}>
-          <article className={article()}>
-            <div
-              dangerouslySetInnerHTML={{
-                __html: data.content,
-              }}
-            />
-          </article>
+          <article
+            className={article()}
+            dangerouslySetInnerHTML={{
+              __html: data.content,
+            }}
+          ></article>
         </section>
         <aside className={aside()}>
           <TableOfContents toc={toc} contentId={data.id} />
