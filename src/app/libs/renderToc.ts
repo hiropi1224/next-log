@@ -1,6 +1,7 @@
 import * as cheerio from 'cheerio';
+import { TableOfContent } from '@/app/type';
 
-export const renderToc = (body: string): { text: string; id: string }[] => {
+export const renderToc = (body: string): TableOfContent[] => {
   const $ = cheerio.load(body);
   const headings = $('h1, h2, h3').toArray();
 
@@ -9,6 +10,7 @@ export const renderToc = (body: string): { text: string; id: string }[] => {
     //@ts-ignore
     text: data.children[0].data,
     id: data.attribs.id,
+    tag: data.tagName,
   }));
 
   return toc;
