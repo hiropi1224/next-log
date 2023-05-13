@@ -24,7 +24,7 @@ export const Header: React.FC = () => {
           viewBox='0 0 95 94'
           className={svg()}
           fill='currentColor'
-          xmlns='http://www.w3.org/2000/svg'
+          role='img'
         >
           <path d='M96 0V47L48 94H0V47L48 0H96Z' />
         </svg>
