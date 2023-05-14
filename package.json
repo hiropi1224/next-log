@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "markuplint": "markuplint \"./src/**/*.{jsx,tsx}\""
+    "markuplint": "markuplint \"./src/**/*.{jsx,tsx}\"",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "dependencies": {
     "@heroicons/react": "^2.0.17",
@@ -34,11 +36,23 @@
     "typescript": "5.0.4"
   },
   "devDependencies": {
+    "@storybook/addon-essentials": "^7.0.11",
+    "@storybook/addon-interactions": "^7.0.11",
+    "@storybook/addon-links": "^7.0.11",
+    "@storybook/blocks": "^7.0.11",
+    "@storybook/nextjs": "^7.0.11",
+    "@storybook/react": "^7.0.11",
+    "@storybook/testing-library": "^0.0.14-next.2",
     "@types/bcp-47": "^2.0.0",
     "@typescript-eslint/eslint-plugin": "^5.59.1",
     "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-storybook": "^0.6.12",
     "markuplint": "^3.10.0",
     "prettier": "^2.8.8",
-    "prettier-plugin-tailwindcss": "^0.2.7"
+    "prettier-plugin-tailwindcss": "^0.2.7",
+    "storybook": "^7.0.11"
+  },
+  "volta": {
+    "node": "18.16.0"
   }
 }

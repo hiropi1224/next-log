@@ -7,15 +7,23 @@
     "next/core-web-vitals",
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
-    "prettier"
+    "prettier",
+    "plugin:storybook/recommended"
   ],
   "parserOptions": {
     "ecmaVersion": "latest",
     "tsconfigRootDir": ".",
-    "project": ["./tsconfig.json"],
+    "project": [
+      "./tsconfig.json"
+    ],
     "sourceType": "module"
   },
-  "plugins": ["@typescript-eslint", "jsx-a11y", "react", "react-hooks"],
+  "plugins": [
+    "@typescript-eslint",
+    "jsx-a11y",
+    "react",
+    "react-hooks"
+  ],
   "rules": {
     "padding-line-between-statements": [
       "error",
@@ -27,7 +35,9 @@
     ],
     "@typescript-eslint/consistent-type-definitions": "off",
     "@typescript-eslint/explicit-function-return-type": "off",
-    "@typescript-eslint/explicit-module-boundary-types": ["error"],
+    "@typescript-eslint/explicit-module-boundary-types": [
+      "error"
+    ],
     "@typescript-eslint/no-misused-promises": [
       "error",
       {
@@ -89,7 +99,9 @@
             "position": "after"
           }
         ],
-        "pathGroupsExcludedImportTypes": ["builtin"],
+        "pathGroupsExcludedImportTypes": [
+          "builtin"
+        ],
         "alphabetize": {
           "order": "asc"
         }
@@ -99,13 +111,18 @@
     "no-console": [
       2,
       {
-        "allow": ["warn", "error"]
+        "allow": [
+          "warn",
+          "error"
+        ]
       }
     ]
   },
   "overrides": [
     {
-      "files": ["*.tsx"],
+      "files": [
+        "*.tsx"
+      ],
       "rules": {
         "react/prop-types": "off"
       }
