@@ -1,12 +1,12 @@
 import Link from 'next/link';
 import { tv } from 'tailwind-variants';
+import { ContentCard } from '@/app/components/contentCard';
 import { getList } from '@/app/libs/microcmsClient';
-import { ContentCard } from '@/app/components/ContentCard';
 
 const contents = tv({
   slots: {
-    base: 'mx-auto max-w-screen-lg px-4 flex flex-wrap items-start justify-between',
-    area: 'm-2 md:w-[47%] w-full',
+    base: 'mx-auto max-w-screen-lg px-4 flex flex-wrap justify-center gap-4',
+    area: 'm-2 w-[400px]',
   },
 });
 
