@@ -8,7 +8,7 @@ import { BlogsResult } from '@/app/type';
 const contents = tv(
   {
     slots: {
-      base: 'mx-auto max-w-screen-xl w-5/6 px-4',
+      base: 'mx-auto max-w-screen-xl w-5/6 px-4 pb-16',
       content: 'flex justify-between',
       article: 'prose prose-sm max-w-none',
       section: '',

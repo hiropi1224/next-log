@@ -10,17 +10,14 @@ const header = tv(
       nav: 'gap-12 mx-4',
       navItem:
         'text-lg font-semibold text-gray-600 transition duration-100 hover:text-indigo-500 active:text-indigo-700',
-      menu: '',
     },
     variants: {
       style: {
         pc: {
           nav: 'flex',
-          menu: 'hidden',
         },
         sp: {
           nav: 'hidden',
-          menu: '',
         },
       },
     },
@@ -30,7 +27,7 @@ const header = tv(
   }
 );
 
-const { base, logo, svg, nav, navItem, menu } = header({
+const { base, logo, svg, nav, navItem } = header({
   style: {
     initial: 'sp',
     md: 'pc',
@@ -73,9 +70,6 @@ export const Header: React.FC = () => {
           About
         </Link>
       </nav>
-      <div className={menu()}>
-        <button>...</button>
-      </div>
     </header>
   );
 };
