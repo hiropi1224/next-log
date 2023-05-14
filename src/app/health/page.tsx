@@ -19,6 +19,8 @@ const contents = tv({
 
 const { base } = contents();
 
+export const revalidate = 3600;
+
 export default async function Blogs(): Promise<JSX.Element> {
   const data = await getData();
 
