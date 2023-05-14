@@ -1,29 +1,19 @@
 import Link from 'next/link';
 import { tv } from 'tailwind-variants';
-import { client } from '@/app/libs/client';
-import { BlogsResult } from '@/app/type';
+import { getList } from '@/app/libs/microcmsClient';
 import { ContentCard } from '@/app/components/ContentCard';
-
-async function getData() {
-  const res: BlogsResult = await client.get({
-    endpoint: 'blogs',
-    queries: { limit: 10, offset: 0, orders: '-createdAt' },
-  });
-
-  return res;
-}
 
 const contents = tv({
   slots: {
-    base: 'mx-auto max-w-screen-lg px-4 md:px-8',
-    area: 'm-2',
+    base: 'mx-auto max-w-screen-lg px-4 flex flex-wrap items-start justify-between',
+    area: 'm-2 md:w-[47%] w-full',
   },
 });
 
 const { base, area } = contents();
 
 export default async function Blogs(): Promise<JSX.Element> {
-  const data = await getData();
+  const data = await getList({ limit: 10, offset: 0, orders: '-createdAt' });
 
   return (
     <main className={base()}>
@@ -32,7 +22,7 @@ export default async function Blogs(): Promise<JSX.Element> {
           <Link href={`/blogs/${content.id}`}>
             <ContentCard
               title={content.title}
-              image={content.eyecatch.url}
+              image={content.eyecatch}
               createdAt={content.createdAt}
             />
           </Link>

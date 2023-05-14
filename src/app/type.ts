@@ -111,3 +111,9 @@ interface Athlete {
   id: number;
   resource_state: number;
 }
+
+export type TableOfContent = {
+  text: string;
+  id: string;
+  tag: string;
+};
