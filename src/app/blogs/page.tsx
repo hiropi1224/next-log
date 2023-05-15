@@ -5,12 +5,14 @@ import { getList } from '@/app/libs/microcmsClient';
 
 const contents = tv({
   slots: {
-    base: 'mx-auto max-w-screen-lg px-4 flex flex-wrap justify-center gap-4',
-    area: 'm-2 w-[400px]',
+    base: 'mx-auto max-w-screen-lg px-4 flex flex-wrap justify-between gap-4',
+    area: 'm-2 w-[450px]',
   },
 });
 
 const { base, area } = contents();
+
+export const revalidate = 3600;
 
 export default async function Blogs(): Promise<JSX.Element> {
   const data = await getList({ limit: 10, offset: 0, orders: '-createdAt' });

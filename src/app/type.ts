@@ -117,3 +117,6 @@ export type TableOfContent = {
   id: string;
   tag: string;
 };
+
+export type Weight = { date: string; weight: string };
+export type Bodyfat = { date: string; bodyfat: string };

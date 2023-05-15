@@ -57,9 +57,6 @@ export const Header: React.FC = () => {
         <Link href='/blogs' className={navItem()}>
           Tech
         </Link>
-        <Link href='/health' className={navItem()}>
-          Health
-        </Link>
         <Link href='/dashboard' className={navItem()}>
           Dashboard
         </Link>
