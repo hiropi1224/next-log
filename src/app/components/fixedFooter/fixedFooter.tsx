@@ -51,10 +51,10 @@ export const FixedFooter: React.FC = () => {
             Tech
           </div>
         </Link>
-        <Link href='/health' className={navItem()}>
+        <Link href='/dashboard' className={navItem()}>
           <div className={area()}>
             <FaRunning className={icon()} />
-            Health
+            Dashboard
           </div>
         </Link>
         <Link href='/' className={navItem()}>
