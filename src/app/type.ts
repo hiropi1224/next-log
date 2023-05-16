@@ -120,3 +120,11 @@ export type TableOfContent = {
 
 export type Weight = { date: string; weight: string };
 export type Bodyfat = { date: string; bodyfat: string };
+
+export type StravaResult = {
+  token_type: string;
+  access_token: string;
+  expires_at: number;
+  expires_in: number;
+  refresh_token: string;
+};
