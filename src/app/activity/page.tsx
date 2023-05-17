@@ -1,7 +1,7 @@
 import { tv } from 'tailwind-variants';
+import { ActivityTable } from '@/app/components/activityTable';
+import { TableData } from '@/app/components/activityTable/activityTable';
 import { StravaResult } from '@/app/type';
-import { formatTime } from '@/app/utils/formatTime';
-import { metersToKilometers } from '@/app/utils/metersToKilometers';
 import { StravaActivity } from '@/types/strava';
 
 async function getData() {
@@ -14,17 +14,14 @@ async function getData() {
   );
   const data: StravaResult = await tokenRes.json();
 
-  const activity = await fetch(
-    `${process.env.stravaActivityEndpoint}/9051278548`,
-    {
-      headers: new Headers({
-        Authorization: `${data.token_type} ${data.access_token}`,
-      }),
-      next: { revalidate: 3600 },
-    }
-  );
+  const activity = await fetch(`${process.env.stravaActivityEndpoint}`, {
+    headers: new Headers({
+      Authorization: `${data.token_type} ${data.access_token}`,
+    }),
+    next: { revalidate: 3600 },
+  });
 
-  const activityRes: StravaActivity = await activity.json();
+  const activityRes: StravaActivity[] = await activity.json();
 
   return activityRes;
 }
@@ -39,14 +36,19 @@ const contents = tv({
 const { base } = contents();
 
 export default async function Page(): Promise<JSX.Element> {
-  const data = await getData();
+  const dataList = await getData();
+  const tableData: TableData[] = dataList.map((data) => {
+    return {
+      id: data.id,
+      date: data.start_date,
+      distance: data.distance,
+      time: data.moving_time,
+    };
+  });
 
   return (
     <main className={base()}>
-      <p>{data.name}</p>
-      <p>{data.type}</p>
-      <p>{`距離：${metersToKilometers(data.distance)}km`}</p>
-      <p>{`時間：${formatTime(data.moving_time)}`}</p>
+      <ActivityTable data={tableData} />
     </main>
   );
 }
