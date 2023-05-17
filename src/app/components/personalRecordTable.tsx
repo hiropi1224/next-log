@@ -11,7 +11,7 @@ import {
   Card,
 } from '@tremor/react';
 import data from '@/app/data/record.json';
-import { formatDate } from '@/app/utils/formatDate';
+import { numberToDate } from '@/app/utils/formatDate';
 import { formatTime } from '@/app/utils/formatTime';
 import { metersToKilometers } from '@/app/utils/metersToKilometers';
 import { secondsToMinSecPerKm } from '@/app/utils/secondsToMinSecPerKm';
@@ -45,7 +45,7 @@ export const PersonalRecordTable: React.FC = () => {
               <TableCell>
                 <Text>{secondsToMinSecPerKm(item.avgPace)}</Text>
               </TableCell>
-              <TableCell>{formatDate(item.happenDay)}</TableCell>
+              <TableCell>{numberToDate(item.happenDay)}</TableCell>
             </TableRow>
           ))}
         </TableBody>
