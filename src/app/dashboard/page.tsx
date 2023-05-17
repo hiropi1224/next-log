@@ -8,7 +8,8 @@ import { getHealthChartData } from '@/app/utils/getHealthChartData';
 
 async function getData() {
   const res = await fetch(
-    `${process.env.healthplanetEndpoint}?access_token=${process.env.healthplanetAccessToken}&data=0`
+    `${process.env.healthplanetEndpoint}?access_token=${process.env.healthplanetAccessToken}&data=0`,
+    { next: { revalidate: 3600 } }
   );
   const data: Health = await res.json();
 
