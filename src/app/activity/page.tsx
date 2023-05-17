@@ -9,7 +9,7 @@ async function getData() {
     `${process.env.stravaEndpoint}?client_id=${process.env.stravaClientId}&client_secret=${process.env.stravaClientSecret}&grant_type=refresh_token&refresh_token=${process.env.stravaRefreshToken}`,
     {
       method: 'POST',
-      cache: 'no-store',
+      next: { revalidate: 3600 },
     }
   );
   const data: StravaResult = await tokenRes.json();
