@@ -8,7 +8,8 @@ import { getHealthChartData } from '@/app/utils/getHealthChartData';
 
 async function getData() {
   const res = await fetch(
-    `${process.env.healthplanetEndpoint}?access_token=${process.env.healthplanetAccessToken}&data=0`
+    `${process.env.healthplanetEndpoint}?access_token=${process.env.healthplanetAccessToken}&data=0`,
+    { next: { revalidate: 3600 } }
   );
   const data: Health = await res.json();
 
@@ -18,7 +19,6 @@ async function getData() {
 const contents = tv({
   slots: {
     base: 'mx-auto max-w-screen-lg px-4 md:px-8',
-    area: 'm-2',
   },
 });
 
