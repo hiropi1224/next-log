@@ -18,7 +18,7 @@ export type Blog = {
   eyecatch?: MicroCMSImage;
 } & MicroCMSDate;
 
-const cacheType: RequestCache = 'no-store';
+const cacheType: RequestCache = 'no-cache';
 
 export const client = createClient({
   serviceDomain: process.env.serviceDomain ?? '', // service-domain は XXXX.microcms.io の XXXX 部分
