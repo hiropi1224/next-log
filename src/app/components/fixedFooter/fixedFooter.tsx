@@ -1,5 +1,6 @@
-import { Cog6ToothIcon, HomeIcon, UserIcon } from '@heroicons/react/24/solid';
+import { Cog6ToothIcon, HomeIcon } from '@heroicons/react/24/solid';
 import Link from 'next/link';
+import { BsClipboardData } from 'react-icons/bs';
 import { FaRunning } from 'react-icons/fa';
 import { tv } from 'tailwind-variants';
 
@@ -53,14 +54,14 @@ export const FixedFooter: React.FC = () => {
         </Link>
         <Link href='/dashboard' className={navItem()}>
           <div className={area()}>
-            <FaRunning className={icon()} />
+            <BsClipboardData className={icon()} />
             Dashboard
           </div>
         </Link>
-        <Link href='/' className={navItem()}>
+        <Link href='/activity' className={navItem()}>
           <div className={area()}>
-            <UserIcon className={icon()} />
-            About
+            <FaRunning className={icon()} />
+            Activity
           </div>
         </Link>
       </nav>
