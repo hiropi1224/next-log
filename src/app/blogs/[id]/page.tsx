@@ -1,4 +1,3 @@
-export const dynamic = 'force-static';
 import { Bold } from '@tremor/react';
 import { tv } from 'tailwind-variants';
 import { TableOfContents } from '@/app/components/tableOfContents';
