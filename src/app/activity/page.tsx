@@ -1,33 +1,7 @@
 import { tv } from 'tailwind-variants';
 import { ActivityTable } from '@/app/components/activityTable';
 import { TableData } from '@/app/components/activityTable/activityTable';
-import { StravaResult } from '@/app/type';
-import { StravaActivity } from '@/types/strava';
-
-async function getData() {
-  const tokenRes = await fetch(
-    `${process.env.stravaEndpoint}?client_id=${process.env.stravaClientId}&client_secret=${process.env.stravaClientSecret}&grant_type=refresh_token&refresh_token=${process.env.stravaRefreshToken}`,
-    {
-      method: 'POST',
-      next: { revalidate: 3600 },
-    }
-  );
-  const data: StravaResult = await tokenRes.json();
-
-  const activity = await fetch(
-    `${process.env.stravaActivityEndpoint}?per_page=10`,
-    {
-      headers: new Headers({
-        Authorization: `${data.token_type} ${data.access_token}`,
-      }),
-      next: { revalidate: 3600 },
-    }
-  );
-
-  const activityRes: StravaActivity[] = await activity.json();
-
-  return activityRes;
-}
+import { getStravaActivity, getStravaToken } from '@/app/libs/strava';
 
 const contents = tv({
   slots: {
@@ -39,14 +13,18 @@ const contents = tv({
 const { base } = contents();
 
 export default async function Page(): Promise<JSX.Element> {
-  const dataList = await getData();
-  const tableData: TableData[] = dataList.map((data) => {
+  const token = await getStravaToken();
+  const activityList = await getStravaActivity({
+    token_type: token.token_type,
+    access_token: token.access_token,
+  });
+  const tableData: TableData[] = activityList.map((activity) => {
     return {
-      id: data.id,
-      date: data.start_date,
-      distance: data.distance,
-      time: data.moving_time,
-      aveTime: data.average_speed,
+      id: activity.id,
+      date: activity.start_date,
+      distance: activity.distance,
+      time: activity.moving_time,
+      aveTime: activity.average_speed,
     };
   });
 
