@@ -1,9 +1,8 @@
 import { Bold } from '@tremor/react';
 import { tv } from 'tailwind-variants';
 import { TableOfContents } from '@/app/components/tableOfContents';
-import { client, getDetail } from '@/app/libs/microcmsClient';
+import { getDetail, getList } from '@/app/libs/microcmsClient';
 import { renderToc } from '@/app/libs/renderToc';
-import { BlogsResult } from '@/app/type';
 
 const contents = tv(
   {
@@ -47,6 +46,26 @@ type PageProps = {
   };
 };
 
+// キャッシュを利用しない
+export const revalidate = 60;
+
+// build時にid一覧を取得する
+export async function generateStaticParams(): Promise<
+  {
+    id: string;
+  }[]
+> {
+  const { contents } = await getList();
+
+  const paths = contents.map((post) => {
+    return {
+      id: post.id,
+    };
+  });
+
+  return [...paths];
+}
+
 export default async function BlogDetail({
   params,
 }: PageProps): Promise<JSX.Element> {
@@ -73,22 +92,4 @@ export default async function BlogDetail({
       </div>
     </main>
   );
-}
-
-// build時にid一覧を取得する
-export async function generateStaticParams(): Promise<
-  {
-    blogId: string;
-  }[]
-> {
-  const res: BlogsResult = await client.get({
-    endpoint: 'blogs',
-    queries: { orders: '-createdAt' },
-  });
-
-  const blogs = res.contents;
-
-  return blogs.map((blog) => ({
-    blogId: blog.id,
-  }));
 }
