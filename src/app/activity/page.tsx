@@ -14,12 +14,15 @@ async function getData() {
   );
   const data: StravaResult = await tokenRes.json();
 
-  const activity = await fetch(`${process.env.stravaActivityEndpoint}`, {
-    headers: new Headers({
-      Authorization: `${data.token_type} ${data.access_token}`,
-    }),
-    next: { revalidate: 3600 },
-  });
+  const activity = await fetch(
+    `${process.env.stravaActivityEndpoint}?per_page=10`,
+    {
+      headers: new Headers({
+        Authorization: `${data.token_type} ${data.access_token}`,
+      }),
+      next: { revalidate: 3600 },
+    }
+  );
 
   const activityRes: StravaActivity[] = await activity.json();
 
@@ -43,6 +46,7 @@ export default async function Page(): Promise<JSX.Element> {
       date: data.start_date,
       distance: data.distance,
       time: data.moving_time,
+      aveTime: data.average_speed,
     };
   });
 
