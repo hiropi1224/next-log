@@ -8,6 +8,7 @@ import {
   TableCell,
   Title,
 } from '@tremor/react';
+import { convertToPace } from '@/app/utils/convertToPace';
 import { stringToDate } from '@/app/utils/formatDate';
 import { formatTime } from '@/app/utils/formatTime';
 import { metersToKilometers } from '@/app/utils/metersToKilometers';
@@ -17,6 +18,7 @@ export type TableData = {
   date: string;
   distance: number;
   time: number;
+  aveTime: number;
 };
 
 type Props = {
@@ -33,7 +35,7 @@ export const ActivityTable: React.FC<Props> = ({ data }) => {
             <TableHeaderCell>日付</TableHeaderCell>
             <TableHeaderCell>距離</TableHeaderCell>
             <TableHeaderCell>時間</TableHeaderCell>
-            {/* <TableHeaderCell>平均ペース</TableHeaderCell> */}
+            <TableHeaderCell>平均ペース</TableHeaderCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -42,7 +44,7 @@ export const ActivityTable: React.FC<Props> = ({ data }) => {
               <TableCell>{stringToDate(item.date)}</TableCell>
               <TableCell>{`${metersToKilometers(item.distance)}km`}</TableCell>
               <TableCell>{formatTime(item.time)}</TableCell>
-              {/* <TableCell>{item.aveTime}</TableCell> */}
+              <TableCell>{convertToPace(item.distance, item.time)}</TableCell>
             </TableRow>
           ))}
         </TableBody>
