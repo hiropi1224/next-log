@@ -46,8 +46,7 @@ type PageProps = {
   };
 };
 
-// キャッシュを利用しない
-export const revalidate = 60;
+export const revalidate = 86400;
 
 // build時にid一覧を取得する
 export async function generateStaticParams(): Promise<
