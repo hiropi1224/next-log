@@ -1,5 +1,5 @@
 import { StravaResult } from '@/app/type';
-import { StravaActivity } from '@/types/strava';
+import { ActivityLaps, StravaActivity } from '@/types/strava';
 
 export const getStravaToken = async (): Promise<StravaResult> => {
   const res = await fetch(
@@ -63,6 +63,26 @@ export const getStravaActivityDetail = async ({
   );
 
   const data: StravaActivity = await res.json();
+
+  return data;
+};
+
+export const getStravaActivityLaps = async ({
+  token_type,
+  access_token,
+  activityId,
+}: DetailParams): Promise<ActivityLaps[]> => {
+  const res = await fetch(
+    `${process.env.stravaActivityEndpoint}/${activityId}/laps`,
+    {
+      headers: new Headers({
+        Authorization: `${token_type} ${access_token}`,
+      }),
+      next: { revalidate: 3600 },
+    }
+  );
+
+  const data: ActivityLaps[] = await res.json();
 
   return data;
 };
