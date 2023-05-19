@@ -10,7 +10,6 @@ import { metersToKilometers } from '@/app/utils/metersToKilometers';
 const contents = tv({
   slots: {
     base: 'mx-auto max-w-screen-lg px-4 md:px-8',
-    area: 'm-2',
   },
 });
 

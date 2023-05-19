@@ -5,7 +5,6 @@ import { tv } from 'tailwind-variants';
 
 const contents = tv({
   slots: {
-    base: 'mx-auto max-w-screen-lg px-4 md:px-8',
     grid: 'mt-6 gap-6',
   },
 });
