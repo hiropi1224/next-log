@@ -1,9 +1,14 @@
+import React from 'react';
 import { tv } from 'tailwind-variants';
+import { ActivityDetail } from '@/app/components/activityDetail';
+import { LapsChart } from '@/app/components/lapsChart';
 import {
   getStravaToken,
   getStravaActivity,
   getStravaActivityDetail,
+  getStravaActivityLaps,
 } from '@/app/libs/strava';
+import { convertToPace } from '@/app/utils/convertToPace';
 import { formatTime } from '@/app/utils/formatTime';
 import { metersToKilometers } from '@/app/utils/metersToKilometers';
 
@@ -50,13 +55,32 @@ export default async function Page({
     access_token: token.access_token,
     activityId: params.activityId,
   });
+  const laps = await getStravaActivityLaps({
+    token_type: token.token_type,
+    access_token: token.access_token,
+    activityId: params.activityId,
+  });
+
+  const lapsChart = laps.map((lap) => {
+    return {
+      distance: lap.lap_index,
+      laptime:
+        lap.distance === 1000
+          ? lap.moving_time
+          : Math.trunc((1000 * lap.moving_time) / lap.distance),
+    };
+  });
 
   return (
     <main className={base()}>
-      <p>activity</p>
-      <p>{data.name}</p>
-      <p>{`${metersToKilometers(data.distance)}km`}</p>
-      <p>{formatTime(data.moving_time)}</p>
+      <ActivityDetail
+        distance={`${metersToKilometers(data.distance)}km`}
+        moving_time={formatTime(data.moving_time)}
+        average_heartrate={data.average_heartrate}
+        average_watts={data.average_watts}
+        average_pace={convertToPace(data.distance, data.moving_time)}
+      />
+      <LapsChart chartdata={lapsChart} />
     </main>
   );
 }
