@@ -11,7 +11,7 @@ import { DashboardShell } from '@/app/components/dashboardShell';
 import { HealthChart } from '@/app/components/healthChart';
 import { PaceZoneTable } from '@/app/components/paceZoneTable';
 import { PersonalRecordTable } from '@/app/components/personalRecordTable';
-import { Health } from '@/app/type';
+import { Health } from '@/types/type';
 
 async function getData() {
   const res = await fetch(

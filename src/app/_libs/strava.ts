@@ -1,5 +1,4 @@
-import { StravaResult } from '@/app/type';
-import { ActivityLaps, StravaActivity } from '@/types/strava';
+import { ActivityLaps, StravaActivity, StravaResult } from '@/types/strava';
 
 export const getStravaToken = async (): Promise<StravaResult> => {
   const res = await fetch(
