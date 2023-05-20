@@ -1,0 +1,1 @@
+export { LapsChart } from './LapsChart';
