@@ -1,7 +1,7 @@
 import { Title } from '@tremor/react';
 import Link from 'next/link';
 import { tv } from 'tailwind-variants';
-import { TableOfContent } from '@/app/type';
+import { TableOfContent } from '@/types/type';
 
 type Props = { toc: TableOfContent[]; contentId: string };
 

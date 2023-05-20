@@ -1,11 +1,13 @@
 import { tv } from 'tailwind-variants';
+import { getStravaActivity, getStravaToken } from '@/app/_libs/strava';
+import {
+  convertToPace,
+  stringToDate,
+  formatTime,
+  metersToKilometers,
+} from '@/app/_utils';
 import { ActivityTable } from '@/app/components/activityTable';
 import { TableData } from '@/app/components/activityTable/activityTable';
-import { getStravaActivity, getStravaToken } from '@/app/libs/strava';
-import { convertToPace } from '@/app/utils/convertToPace';
-import { stringToDate } from '@/app/utils/formatDate';
-import { formatTime } from '@/app/utils/formatTime';
-import { metersToKilometers } from '@/app/utils/metersToKilometers';
 
 const contents = tv({
   slots: {

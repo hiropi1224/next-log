@@ -1,5 +1,5 @@
 import * as cheerio from 'cheerio';
-import { TableOfContent } from '@/app/type';
+import { TableOfContent } from '@/types/type';
 
 export const renderToc = (body: string): TableOfContent[] => {
   const $ = cheerio.load(body);

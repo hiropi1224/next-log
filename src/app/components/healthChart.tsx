@@ -1,7 +1,7 @@
 'use client';
 import { FC } from 'react';
 import { Card, Title, AreaChart } from '@tremor/react';
-import { Bodyfat, Weight } from '@/app/type';
+import { Bodyfat, Weight } from '@/types/type';
 
 type Props = {
   title: string;

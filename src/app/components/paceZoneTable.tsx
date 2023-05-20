@@ -13,7 +13,7 @@ import {
   Flex,
 } from '@tremor/react';
 import { tv } from 'tailwind-variants';
-import data from '@/app/data/pacezone.json';
+import data from '@/app/_data/pacezone.json';
 
 const table = tv({
   slots: {

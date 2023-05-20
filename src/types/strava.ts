@@ -1,4 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+export type StravaResult = {
+  token_type: string;
+  access_token: string;
+  expires_at: number;
+  expires_in: number;
+  refresh_token: string;
+};
+
 export interface StravaActivity {
   resource_state: number;
   athlete: Athlete;
@@ -236,8 +244,11 @@ export interface ActivityLaps {
   average_cadence: number;
   device_watts: boolean;
   average_watts: number;
+  average_heartrate: number;
+  max_heartrate: number;
   lap_index: number;
   split: number;
+  pace_zone: number;
 }
 
 interface Activity {
@@ -248,4 +259,6 @@ interface Activity {
 export type LapData = {
   distance: number;
   laptime: number;
+  average_heartrate: number;
+  max_heartrate: number;
 };

@@ -1,4 +1,4 @@
-import { Bodyfat, Health, Weight } from '@/app/type';
+import { Bodyfat, Health, Weight } from '@/types/type';
 
 export function getHealthChartData(data: Health): {
   weightdata: Weight[];

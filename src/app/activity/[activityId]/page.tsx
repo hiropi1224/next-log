@@ -1,17 +1,20 @@
 import React from 'react';
 import { tv } from 'tailwind-variants';
-import { ActivityDetail } from '@/app/components/activityDetail';
-import { LapsChart } from '@/app/components/lapsChart';
 import {
   getStravaToken,
   getStravaActivity,
   getStravaActivityDetail,
   getStravaActivityLaps,
-} from '@/app/libs/strava';
-import { convertToPace } from '@/app/utils/convertToPace';
-import { formatTime } from '@/app/utils/formatTime';
-import { getLaps } from '@/app/utils/getLaps';
-import { metersToKilometers } from '@/app/utils/metersToKilometers';
+} from '@/app/_libs/strava';
+import {
+  convertToPace,
+  formatTime,
+  getLaps,
+  metersToKilometers,
+} from '@/app/_utils';
+import { ActivityDetail } from '@/app/components/activityDetail';
+import { LapsChart } from '@/app/components/lapsChart';
+import { LapsTable } from '@/app/components/lapsTable';
 
 const contents = tv({
   slots: {
@@ -74,6 +77,7 @@ export default async function Page({
         average_cadence={data.average_cadence}
         average_pace={convertToPace(data.distance, data.moving_time)}
       />
+      <LapsTable lapData={lapData} />
       <LapsChart lapData={lapData} />
     </main>
   );

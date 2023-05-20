@@ -1,0 +1,1 @@
+export { LapsTable } from './LapsTable';
