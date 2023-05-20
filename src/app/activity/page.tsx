@@ -13,14 +13,36 @@ import { ActivityTable } from '@/app/components/activityTable';
 import { TableData } from '@/app/components/activityTable/activityTable';
 import { DatePicker } from '@/app/components/datePicker/DatePicker';
 
-const contents = tv({
-  slots: {
-    base: 'mx-auto max-w-screen-lg px-4 md:px-8',
-    form: 'flex justify-start gap-4 mx-auto max-w-xl',
+const contents = tv(
+  {
+    slots: {
+      base: 'mx-auto max-w-screen-lg px-4 md:px-8',
+      form: 'md:flex justify-start gap-4 mx-auto max-w-xl',
+      button: ' bg-blue-300 hover:bg-blue-200 text-white rounded px-4 py-2',
+      buttonwrap: 'flex justify-center',
+    },
+    variants: {
+      style: {
+        pc: {
+          button: 'mt-0 w-full',
+        },
+        sp: {
+          button: 'mt-2 w-2/3',
+        },
+      },
+    },
+  },
+  {
+    responsiveVariants: ['md'],
+  }
+);
+
+const { base, form, button, buttonwrap } = contents({
+  style: {
+    initial: 'sp',
+    md: 'pc',
   },
 });
-
-const { base, form } = contents();
 
 async function handleSubmit(formData: FormData) {
   'use server';
@@ -76,7 +98,11 @@ export default async function Page(): Promise<JSX.Element> {
       {/* @ts-expect-error Async Server Component */}
       <form action={handleSubmit} className={form()}>
         <DatePicker />
-        <button type='submit'>検索</button>
+        <div className={buttonwrap()}>
+          <button type='submit' className={button()}>
+            検索
+          </button>
+        </div>
       </form>
       <ActivityTable data={tableData} />
     </main>
