@@ -2,23 +2,18 @@
 import { FC } from 'react';
 import { Card, Title, LineChart } from '@tremor/react';
 import { formatTime } from '@/app/utils/formatTime';
+import { LapData } from '@/types/strava';
 
 type Props = {
-  chartdata: ChartData[];
+  lapData: LapData[];
 };
 
-type ChartData = {
-  distance: number;
-  laptime: number;
-};
-
-export const LapsChart: FC<Props> = ({ chartdata }) => {
+export const LapsChart: FC<Props> = ({ lapData }) => {
   return (
-    <Card className='mb-16'>
+    <Card>
       <Title>Activity Laps</Title>
       <LineChart
-        className='mt-6'
-        data={chartdata}
+        data={lapData}
         index='distance'
         categories={['laptime']}
         colors={['emerald']}
