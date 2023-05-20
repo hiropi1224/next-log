@@ -44,7 +44,7 @@ export const getStravaActivity = async ({
     headers: new Headers({
       Authorization: `${token_type} ${access_token}`,
     }),
-    next: { revalidate: 3600 },
+    next: { revalidate: 3600, tags: ['activity'] },
   });
 
   const data: StravaActivity[] = await res.json();
