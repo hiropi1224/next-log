@@ -7,9 +7,10 @@ import {
   TableBody,
   TableRow,
   TableCell,
-  Title,
+  Callout,
 } from '@tremor/react';
 import Link from 'next/link';
+import { AiOutlineExclamationCircle } from 'react-icons/ai';
 import { tv } from 'tailwind-variants';
 
 export type TableData = {
@@ -34,9 +35,20 @@ const activityTable = tv({
 const { table, icon } = activityTable();
 
 export const ActivityTable: React.FC<Props> = ({ data }) => {
+  if (data.length === 0)
+    return (
+      <Callout
+        className='mt-4'
+        title='ワークアウトがありません。'
+        icon={AiOutlineExclamationCircle}
+        color='rose'
+      >
+        指定された期間のワークアウトがありません。期間を変更してもう一度検索してください。
+      </Callout>
+    );
+
   return (
     <>
-      <Title>最近のワークアウト</Title>
       <Table className={table()}>
         <TableHead>
           <TableRow>
