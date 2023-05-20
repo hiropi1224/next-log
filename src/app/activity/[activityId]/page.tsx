@@ -14,6 +14,7 @@ import {
 } from '@/app/_utils';
 import { ActivityDetail } from '@/app/components/activityDetail';
 import { LapsChart } from '@/app/components/lapsChart';
+import { LapsTable } from '@/app/components/lapsTable';
 
 const contents = tv({
   slots: {
@@ -76,6 +77,7 @@ export default async function Page({
         average_cadence={data.average_cadence}
         average_pace={convertToPace(data.distance, data.moving_time)}
       />
+      <LapsTable lapData={lapData} />
       <LapsChart lapData={lapData} />
     </main>
   );
