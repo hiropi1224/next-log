@@ -10,17 +10,22 @@ import {
   Text,
   Card,
 } from '@tremor/react';
-import data from '@/app/data/record.json';
-import { numberToDate } from '@/app/utils/formatDate';
-import { formatTime } from '@/app/utils/formatTime';
-import { metersToKilometers } from '@/app/utils/metersToKilometers';
-import { secondsToMinSecPerKm } from '@/app/utils/secondsToMinSecPerKm';
 
-export const PersonalRecordTable: React.FC = () => {
+type Props = {
+  data: {
+    type: number;
+    distance: string;
+    duration: string;
+    avgPace: string;
+    happenDay: string;
+  }[];
+};
+
+export const PersonalRecordTable: React.FC<Props> = ({ data }) => {
   return (
     <Card>
       <Title>パーソナルレコード(PR)</Title>
-      <Table className='mt-5'>
+      <Table>
         <TableHead>
           <TableRow>
             <TableHeaderCell>距離</TableHeaderCell>
@@ -33,19 +38,15 @@ export const PersonalRecordTable: React.FC = () => {
           {data.map((item) => (
             <TableRow key={item.type}>
               <TableCell>
-                <Text>
-                  {typeof item.distance === 'string'
-                    ? item.distance
-                    : `${metersToKilometers(item.distance)}km`}
-                </Text>
+                <Text>{item.distance}</Text>
               </TableCell>
               <TableCell>
-                <Text>{formatTime(item.duration)}</Text>
+                <Text>{item.duration}</Text>
               </TableCell>
               <TableCell>
-                <Text>{secondsToMinSecPerKm(item.avgPace)}</Text>
+                <Text>{item.avgPace}</Text>
               </TableCell>
-              <TableCell>{numberToDate(item.happenDay)}</TableCell>
+              <TableCell>{item.happenDay}</TableCell>
             </TableRow>
           ))}
         </TableBody>

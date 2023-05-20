@@ -1,10 +1,17 @@
 import { tv } from 'tailwind-variants';
+import recordList from '@/app/_data/record.json';
+import {
+  numberToDate,
+  formatTime,
+  getHealthChartData,
+  metersToKilometers,
+  secondsToMinSecPerKm,
+} from '@/app/_utils';
 import { DashboardShell } from '@/app/components/dashboardShell';
 import { HealthChart } from '@/app/components/healthChart';
 import { PaceZoneTable } from '@/app/components/paceZoneTable';
 import { PersonalRecordTable } from '@/app/components/personalRecordTable';
 import { Health } from '@/app/type';
-import { getHealthChartData } from '@/app/utils/getHealthChartData';
 
 async function getData() {
   const res = await fetch(
@@ -29,10 +36,23 @@ export default async function Blogs(): Promise<JSX.Element> {
 
   const { weightdata, bodyfatdata } = getHealthChartData(data);
 
+  const personalRecord = recordList.map((record) => {
+    return {
+      type: record.type,
+      distance:
+        typeof record.distance === 'string'
+          ? record.distance
+          : `${metersToKilometers(record.distance)}km`,
+      duration: formatTime(record.duration),
+      avgPace: secondsToMinSecPerKm(record.avgPace),
+      happenDay: numberToDate(record.happenDay),
+    };
+  });
+
   return (
     <main className={base()}>
       <DashboardShell>
-        <PersonalRecordTable />
+        <PersonalRecordTable data={personalRecord} />
         <PaceZoneTable />
         <HealthChart title='体重' data={weightdata} category='weight' />
         <HealthChart title='体脂肪' data={bodyfatdata} category='bodyfat' />

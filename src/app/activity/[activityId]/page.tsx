@@ -1,17 +1,19 @@
 import React from 'react';
 import { tv } from 'tailwind-variants';
-import { ActivityDetail } from '@/app/components/activityDetail';
-import { LapsChart } from '@/app/components/lapsChart';
 import {
   getStravaToken,
   getStravaActivity,
   getStravaActivityDetail,
   getStravaActivityLaps,
-} from '@/app/libs/strava';
-import { convertToPace } from '@/app/utils/convertToPace';
-import { formatTime } from '@/app/utils/formatTime';
-import { getLaps } from '@/app/utils/getLaps';
-import { metersToKilometers } from '@/app/utils/metersToKilometers';
+} from '@/app/_libs/strava';
+import {
+  convertToPace,
+  formatTime,
+  getLaps,
+  metersToKilometers,
+} from '@/app/_utils';
+import { ActivityDetail } from '@/app/components/activityDetail';
+import { LapsChart } from '@/app/components/lapsChart';
 
 const contents = tv({
   slots: {

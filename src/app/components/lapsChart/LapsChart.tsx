@@ -1,7 +1,7 @@
 'use client';
 import { FC } from 'react';
 import { Card, Title, LineChart } from '@tremor/react';
-import { formatTime } from '@/app/utils/formatTime';
+import { formatTime } from '@/app/_utils';
 import { LapData } from '@/types/strava';
 
 type Props = {
