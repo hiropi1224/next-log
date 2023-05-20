@@ -244,8 +244,11 @@ export interface ActivityLaps {
   average_cadence: number;
   device_watts: boolean;
   average_watts: number;
+  average_heartrate: number;
+  max_heartrate: number;
   lap_index: number;
   split: number;
+  pace_zone: number;
 }
 
 interface Activity {
@@ -256,4 +259,6 @@ interface Activity {
 export type LapData = {
   distance: number;
   laptime: number;
+  average_heartrate: number;
+  max_heartrate: number;
 };
