@@ -10,11 +10,12 @@ import {
 } from '@/app/libs/strava';
 import { convertToPace } from '@/app/utils/convertToPace';
 import { formatTime } from '@/app/utils/formatTime';
+import { getLaps } from '@/app/utils/getLaps';
 import { metersToKilometers } from '@/app/utils/metersToKilometers';
 
 const contents = tv({
   slots: {
-    base: 'mx-auto max-w-screen-lg px-4 md:px-8',
+    base: 'mx-auto max-w-screen-lg px-4 pb-16',
   },
 });
 
@@ -61,15 +62,7 @@ export default async function Page({
     activityId: params.activityId,
   });
 
-  const lapsChart = laps.map((lap) => {
-    return {
-      distance: lap.lap_index,
-      laptime:
-        lap.distance === 1000
-          ? lap.moving_time
-          : Math.trunc((1000 * lap.moving_time) / lap.distance),
-    };
-  });
+  const lapData = getLaps(laps);
 
   return (
     <main className={base()}>
@@ -78,9 +71,10 @@ export default async function Page({
         moving_time={formatTime(data.moving_time)}
         average_heartrate={data.average_heartrate}
         average_watts={data.average_watts}
+        average_cadence={data.average_cadence}
         average_pace={convertToPace(data.distance, data.moving_time)}
       />
-      <LapsChart chartdata={lapsChart} />
+      <LapsChart lapData={lapData} />
     </main>
   );
 }

@@ -244,3 +244,8 @@ interface Activity {
   id: number;
   resource_state: number;
 }
+
+export type LapData = {
+  distance: number;
+  laptime: number;
+};
