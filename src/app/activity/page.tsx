@@ -1,13 +1,6 @@
 import { tv } from 'tailwind-variants';
 import { getStravaActivity, getStravaToken } from '@/app/_libs/strava';
-import {
-  convertToPace,
-  stringToDate,
-  formatTime,
-  metersToKilometers,
-} from '@/app/_utils';
-import { ActivityTable } from '@/app/components/activityTable';
-import { TableData } from '@/app/components/activityTable/activityTable';
+import { ActivityWrapper } from '@/app/components/activityWrapper/ActivityWrapper';
 
 const contents = tv({
   slots: {
@@ -23,19 +16,10 @@ export default async function Page(): Promise<JSX.Element> {
     token_type: token.token_type,
     access_token: token.access_token,
   });
-  const tableData: TableData[] = activityList.map((activity) => {
-    return {
-      id: activity.id,
-      date: stringToDate(activity.start_date),
-      distance: `${metersToKilometers(activity.distance)}km`,
-      time: formatTime(activity.moving_time),
-      aveTime: convertToPace(activity.distance, activity.moving_time),
-    };
-  });
 
   return (
     <main className={base()}>
-      <ActivityTable data={tableData} />
+      <ActivityWrapper activityList={activityList} />
     </main>
   );
 }
