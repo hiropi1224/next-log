@@ -1,4 +1,5 @@
 import 'server-only';
+import { Text } from '@tremor/react';
 import { revalidateTag } from 'next/cache';
 import { cookies } from 'next/headers';
 import { tv } from 'tailwind-variants';
@@ -13,41 +14,26 @@ import { ActivityTable } from '@/app/components/activityTable';
 import { TableData } from '@/app/components/activityTable/activityTable';
 import { DatePicker } from '@/app/components/datePicker/DatePicker';
 
-const contents = tv(
-  {
-    slots: {
-      base: 'mx-auto max-w-screen-lg px-4 md:px-8',
-      form: 'md:flex justify-start gap-4 mx-auto max-w-xl',
-      button: ' bg-blue-300 hover:bg-blue-200 text-white rounded px-4 py-2',
-      buttonwrap: 'flex justify-center',
-    },
-    variants: {
-      style: {
-        pc: {
-          button: 'mt-0 w-full',
-        },
-        sp: {
-          button: 'mt-2 w-2/3',
-        },
-      },
-    },
-  },
-  {
-    responsiveVariants: ['md'],
-  }
-);
-
-const { base, form, button, buttonwrap } = contents({
-  style: {
-    initial: 'sp',
-    md: 'pc',
+const contents = tv({
+  slots: {
+    base: 'mx-auto max-w-screen-lg px-4 md:px-8',
+    form: 'gap-4 mx-auto max-w-xl',
+    button:
+      'mt-2 w-2/3 bg-blue-300 hover:bg-blue-200 text-white rounded px-4 py-2',
+    buttonwrap: 'flex justify-center',
+    radio:
+      'ml-2 h-4 w-4 border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-blue-600',
+    label: 'm-2 text-sm font-medium text-gray-900 dark:text-gray-300',
   },
 });
+
+const { base, form, button, buttonwrap, radio, label } = contents();
 
 async function handleSubmit(formData: FormData) {
   'use server';
   const beforeDate = formData.get('before') as string;
   const afterDate = formData.get('after') as string;
+  const page = formData.get('page') as string;
 
   const beforeUnixtime = Math.floor(
     new Date(beforeDate).getTime() / 1000
@@ -58,6 +44,7 @@ async function handleSubmit(formData: FormData) {
 
   cookies().set('before', beforeUnixtime);
   cookies().set('after', afterUnixtime);
+  cookies().set('page', page);
 
   revalidateTag('activity');
 }
@@ -69,6 +56,7 @@ export default async function Page(): Promise<JSX.Element> {
   const cookieStore = cookies();
   const beforeDate = cookieStore.get('before');
   const afterDate = cookieStore.get('after');
+  const prePage = cookieStore.get('page');
   const token = await getStravaToken();
   const activityList = await getStravaActivity({
     token_type: token.token_type,
@@ -81,6 +69,7 @@ export default async function Page(): Promise<JSX.Element> {
       afterDate != null
         ? afterDate.value
         : Math.floor(oneWeekAgoDate.getTime() / 1000).toString(),
+    pre_page: prePage != null ? Number(prePage.value) : 10,
   });
 
   const tableData: TableData[] = activityList.map((activity) => {
@@ -98,6 +87,39 @@ export default async function Page(): Promise<JSX.Element> {
       {/* @ts-expect-error Async Server Component */}
       <form action={handleSubmit} className={form()}>
         <DatePicker />
+        <div className='flex items-center justify-center'>
+          <Text>表示件数</Text>
+          <input
+            id='page'
+            type='radio'
+            value='10'
+            name='page'
+            className={radio()}
+          />
+          <label id='page' className={label()}>
+            10
+          </label>
+          <input
+            id='page30'
+            type='radio'
+            value='30'
+            name='page'
+            className={radio()}
+          />
+          <label id='page30' className={label()}>
+            30
+          </label>
+          <input
+            id='page50'
+            type='radio'
+            value='50'
+            name='page'
+            className={radio()}
+          />
+          <label id='page50' className={label()}>
+            50
+          </label>
+        </div>
         <div className={buttonwrap()}>
           <button type='submit' className={button()}>
             検索
