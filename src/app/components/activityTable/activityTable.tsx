@@ -8,6 +8,8 @@ import {
   TableRow,
   TableCell,
   Callout,
+  Title,
+  Text,
 } from '@tremor/react';
 import Link from 'next/link';
 import { AiOutlineExclamationCircle } from 'react-icons/ai';
@@ -49,9 +51,13 @@ export const ActivityTable: React.FC<Props> = ({ data }) => {
 
   return (
     <>
+      <div className='flex justify-between'>
+        <Title>アクティビティ一覧</Title>
+        <Text>件数: {data.length}</Text>
+      </div>
       <Table className={table()}>
-        <TableHead>
-          <TableRow>
+        <TableHead className='text-gray-900'>
+          <TableRow className='text-blue-900'>
             <TableHeaderCell>日付</TableHeaderCell>
             <TableHeaderCell>距離</TableHeaderCell>
             <TableHeaderCell>時間</TableHeaderCell>
@@ -61,7 +67,7 @@ export const ActivityTable: React.FC<Props> = ({ data }) => {
         </TableHead>
         <TableBody>
           {data.map((item) => (
-            <TableRow key={item.id}>
+            <TableRow key={item.id} className='text-blue-900'>
               <TableCell>{item.date}</TableCell>
               <TableCell>{item.distance}</TableCell>
               <TableCell>{item.time}</TableCell>
