@@ -9,8 +9,7 @@ const toc = tv({
   slots: {
     base: 'sticky top-6',
     list: 'text-sm text-slate-500',
-    listItem:
-      'relative list-none pl-5 before:absolute before:left-0 before:top-1 before:h-2.5 before:w-2.5 before:inline-block before:rounded-full before:bg-sky-300',
+    listItem: 'p-1 hover:bg-slate-100',
   },
 });
 
@@ -32,33 +31,19 @@ export const TableOfContents: React.FC<Props> = ({ toc, contentId }) => {
             );
           } else if (item.tag === 'h2') {
             return (
-              <ul
-                key={item.id}
-                className={listItem({
-                  class: 'm-3 before:h-1.5 before:w-1.5',
-                })}
-              >
-                <li>
-                  <Link href={`/blogs/${contentId}/#${item.id}`} scroll={false}>
-                    {item.text}
-                  </Link>
-                </li>
+              <ul key={item.id} className='m-2'>
+                <Link href={`/blogs/${contentId}/#${item.id}`} scroll={false}>
+                  <li className={listItem()}>{item.text}</li>
+                </Link>
               </ul>
             );
           } else if (item.tag === 'h3') {
             return (
-              <ul key={item.id} className='m-3'>
-                <ul
-                  className={listItem({ class: 'm-3 before:h-1 before:w-1' })}
-                >
-                  <li>
-                    <Link
-                      href={`/blogs/${contentId}/#${item.id}`}
-                      scroll={false}
-                    >
-                      {item.text}
-                    </Link>
-                  </li>
+              <ul key={item.id} className='m-4'>
+                <ul>
+                  <Link href={`/blogs/${contentId}/#${item.id}`} scroll={false}>
+                    <li className={listItem()}>{item.text}</li>
+                  </Link>
                 </ul>
               </ul>
             );
