@@ -1,7 +1,7 @@
 import { Grid } from '@tremor/react';
 import { tv } from 'tailwind-variants';
+import { HealthChart } from '@/app/_component/healthChart';
 import { getHealthChartData } from '@/app/_utils';
-import { HealthChart } from '@/app/components/healthChart';
 import { Health } from '@/types/type';
 
 async function getData() {

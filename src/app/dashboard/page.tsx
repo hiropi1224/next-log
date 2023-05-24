@@ -1,3 +1,6 @@
+import { DashboardShell } from '@/app/_component/dashboardShell';
+import { PaceZoneTable } from '@/app/_component/paceZoneTable';
+import { PersonalRecordTable } from '@/app/_component/personalRecordTable';
 import recordList from '@/app/_data/record.json';
 import {
   numberToDate,
@@ -5,9 +8,6 @@ import {
   metersToKilometers,
   secondsToMinSecPerKm,
 } from '@/app/_utils';
-import { DashboardShell } from '@/app/components/dashboardShell';
-import { PaceZoneTable } from '@/app/components/paceZoneTable';
-import { PersonalRecordTable } from '@/app/components/personalRecordTable';
 
 export default async function Blogs(): Promise<JSX.Element> {
   const personalRecord = recordList.map((record) => {

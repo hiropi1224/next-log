@@ -3,6 +3,9 @@ import { Text } from '@tremor/react';
 import { revalidateTag } from 'next/cache';
 import { cookies } from 'next/headers';
 import { tv } from 'tailwind-variants';
+import { ActivityTable } from '@/app/_component/activityTable';
+import { TableData } from '@/app/_component/activityTable/activityTable';
+import { DatePicker } from '@/app/_component/datePicker';
 import { getStravaActivity, getStravaToken } from '@/app/_libs/strava';
 import {
   stringToDate,
@@ -10,9 +13,6 @@ import {
   formatTime,
   convertToPace,
 } from '@/app/_utils';
-import { ActivityTable } from '@/app/components/activityTable';
-import { TableData } from '@/app/components/activityTable/activityTable';
-import { DatePicker } from '@/app/components/datePicker/DatePicker';
 
 const contents = tv({
   slots: {

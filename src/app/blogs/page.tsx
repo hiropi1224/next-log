@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { tv } from 'tailwind-variants';
+import { ContentCard } from '@/app/_component/contentCard';
 import { getList } from '@/app/_libs/microcmsClient';
-import { ContentCard } from '@/app/components/contentCard';
 
 const contents = tv({
   slots: {

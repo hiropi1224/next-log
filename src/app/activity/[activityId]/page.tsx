@@ -1,5 +1,8 @@
 import React from 'react';
 import { tv } from 'tailwind-variants';
+import { ActivityDetail } from '@/app/_component/activityDetail';
+import { LapsChart } from '@/app/_component/lapsChart';
+import { LapsTable } from '@/app/_component/lapsTable';
 import {
   getStravaToken,
   getStravaActivity,
@@ -12,9 +15,6 @@ import {
   getLaps,
   metersToKilometers,
 } from '@/app/_utils';
-import { ActivityDetail } from '@/app/components/activityDetail';
-import { LapsChart } from '@/app/components/lapsChart';
-import { LapsTable } from '@/app/components/lapsTable';
 
 const contents = tv({
   slots: {
