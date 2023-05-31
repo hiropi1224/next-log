@@ -6,6 +6,8 @@ import { tv } from 'tailwind-variants';
 import { ActivityTable } from '@/app/_component/activityTable';
 import { TableData } from '@/app/_component/activityTable/activityTable';
 import { DatePicker } from '@/app/_component/datePicker';
+import { RadioButton } from '@/app/_component/radioButton';
+import { viewCount } from '@/app/_data/viewCount';
 import { getStravaActivity, getStravaToken } from '@/app/_libs/strava';
 import {
   stringToDate,
@@ -21,13 +23,10 @@ const contents = tv({
     button:
       'mt-2 w-2/3 bg-blue-300 hover:bg-blue-200 text-white rounded px-4 py-2',
     buttonwrap: 'flex justify-center',
-    radio:
-      'ml-2 h-4 w-4 border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-blue-600',
-    label: 'm-2 text-sm font-medium text-gray-900 dark:text-gray-300',
   },
 });
 
-const { base, form, button, buttonwrap, radio, label } = contents();
+const { base, form, button, buttonwrap } = contents();
 
 async function handleSubmit(formData: FormData) {
   'use server';
@@ -72,6 +71,8 @@ export default async function Page(): Promise<JSX.Element> {
     pre_page: prePage != null ? Number(prePage.value) : 10,
   });
 
+  if (activityList.length === 0) return <>...loading</>;
+
   const tableData: TableData[] = activityList.map((activity) => {
     return {
       id: activity.id,
@@ -88,37 +89,8 @@ export default async function Page(): Promise<JSX.Element> {
       <form action={handleSubmit} className={form()}>
         <DatePicker />
         <div className='flex items-center justify-center'>
-          <Text>表示件数</Text>
-          <input
-            id='page'
-            type='radio'
-            value='10'
-            name='page'
-            className={radio()}
-          />
-          <label id='page' className={label()}>
-            10
-          </label>
-          <input
-            id='page30'
-            type='radio'
-            value='30'
-            name='page'
-            className={radio()}
-          />
-          <label id='page30' className={label()}>
-            30
-          </label>
-          <input
-            id='page50'
-            type='radio'
-            value='50'
-            name='page'
-            className={radio()}
-          />
-          <label id='page50' className={label()}>
-            50
-          </label>
+          <Text className='mr-2'>表示件数:</Text>
+          <RadioButton data={viewCount} />
         </div>
         <div className={buttonwrap()}>
           <button type='submit' className={button()}>
