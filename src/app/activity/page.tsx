@@ -71,8 +71,6 @@ export default async function Page(): Promise<JSX.Element> {
     pre_page: prePage != null ? Number(prePage.value) : 10,
   });
 
-  if (activityList.length === 0) return <>...loading</>;
-
   const tableData: TableData[] = activityList.map((activity) => {
     return {
       id: activity.id,
@@ -90,7 +88,7 @@ export default async function Page(): Promise<JSX.Element> {
         <DatePicker />
         <div className='flex items-center justify-center'>
           <Text className='mr-2'>表示件数:</Text>
-          <RadioButton data={viewCount} />
+          <RadioButton data={viewCount} id='page' />
         </div>
         <div className={buttonwrap()}>
           <button type='submit' className={button()}>
