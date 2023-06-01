@@ -16,7 +16,7 @@ async function getData() {
 
 const contents = tv({
   slots: {
-    base: 'mt-6 gap-6',
+    base: 'space-x-2  mb-2',
   },
 });
 

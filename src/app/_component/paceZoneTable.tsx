@@ -17,13 +17,12 @@ import data from '@/app/_data/pacezone.json';
 
 const table = tv({
   slots: {
-    base: 'mt-5',
     icon: 'h-4 w-4',
-    flex: 'justify-start',
+    iconStyle: 'justify-start',
   },
 });
 
-const { base, icon, flex } = table();
+const { icon, iconStyle } = table();
 
 export const PaceZoneTable: React.FC = () => {
   const color = [
@@ -37,7 +36,7 @@ export const PaceZoneTable: React.FC = () => {
   return (
     <Card>
       <Title>閾値ペースゾーン</Title>
-      <Table className={base()}>
+      <Table>
         <TableHead>
           <TableRow>
             <TableHeaderCell>ペースゾーン</TableHeaderCell>
@@ -48,7 +47,7 @@ export const PaceZoneTable: React.FC = () => {
           {data.map((item, i) => (
             <TableRow key={item.zone}>
               <TableCell>
-                <Flex className={flex()}>
+                <Flex className={iconStyle()}>
                   <FireIcon className={icon({ className: `${color[i]}` })} />
                   <Text>{`Zone ${item.zone}`}</Text>
                 </Flex>
