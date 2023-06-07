@@ -15,7 +15,7 @@ const card = tv(
 
 const { base } = card();
 
-export default async function PostList(): Promise<JSX.Element> {
+export const PostList = async (): Promise<JSX.Element> => {
   const data = await getList({ limit: 10, offset: 0, orders: '-createdAt' });
 
   return (
@@ -29,4 +29,4 @@ export default async function PostList(): Promise<JSX.Element> {
       ))}
     </main>
   );
-}
+};

@@ -83,7 +83,6 @@ export default async function Page(): Promise<JSX.Element> {
 
   return (
     <main className={base()}>
-      {/* @ts-expect-error Async Server Component */}
       <form action={handleSubmit} className={form()}>
         <DatePicker />
         <div className='flex items-center justify-center'>

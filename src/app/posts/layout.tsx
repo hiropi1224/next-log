@@ -1,4 +1,4 @@
-import PostList from '@/app/_component/postList/postList';
+import { PostList } from '@/app/_component/postList/postList';
 
 export default function PostLayout({
   children,
