@@ -1,6 +1,8 @@
+import { FC } from 'react';
+import { MicroCMSListResponse } from 'microcms-js-sdk';
 import Link from 'next/link';
 import { tv } from 'tailwind-variants';
-import { getList } from '@/app/_libs/microcmsClient';
+import { Blog } from '@/app/_libs/microcmsClient';
 
 const card = tv(
   {
@@ -15,18 +17,19 @@ const card = tv(
 
 const { base } = card();
 
-export const PostList = async (): Promise<JSX.Element> => {
-  const data = await getList({ limit: 10, offset: 0, orders: '-createdAt' });
-
-  return (
-    <main className={base()}>
-      {data.contents.map((content) => (
-        <div key={content.id}>
-          <Link href={`/blogs/${content.id}`}>
-            <h3 className='font-bold'>{content.title}</h3>
-          </Link>
-        </div>
-      ))}
-    </main>
-  );
+type Props = {
+  data: MicroCMSListResponse<Blog>;
 };
+
+export const PostList: FC<Props> = ({ data }) => (
+  <main className={base()}>
+    <h1 className='text-lg font-bold'>記事一覧</h1>
+    {data.contents.map((content) => (
+      <div key={content.id}>
+        <Link href={`/posts/${content.id}`}>
+          <h3>{content.title}</h3>
+        </Link>
+      </div>
+    ))}
+  </main>
+);
