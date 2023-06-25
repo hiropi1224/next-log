@@ -13,7 +13,6 @@ type Story = StoryObj<typeof ContentCard>;
 export const Primary: Story = {
   args: {
     title: 'title',
-    image: undefined,
     createdAt: '2023/1/1',
   },
 };
