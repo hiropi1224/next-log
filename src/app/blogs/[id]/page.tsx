@@ -1,8 +1,8 @@
 import { Bold } from '@tremor/react';
 import { tv } from 'tailwind-variants';
+import { TableOfContents } from '@/app/_component/tableOfContents';
 import { getDetail, getList } from '@/app/_libs/microcmsClient';
 import { renderToc } from '@/app/_libs/renderToc';
-import { TableOfContents } from '@/app/components/tableOfContents';
 
 const contents = tv(
   {

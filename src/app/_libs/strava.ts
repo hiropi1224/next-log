@@ -18,6 +18,8 @@ type ActivityParams = {
   access_token: string;
   pre_page?: number;
   page?: number;
+  before?: string;
+  after?: string;
 };
 type DetailParams = {
   token_type: string;
@@ -30,16 +32,20 @@ export const getStravaActivity = async ({
   access_token,
   page = 1,
   pre_page = 10,
+  before = '',
+  after = '',
 }: ActivityParams): Promise<StravaActivity[]> => {
-  const res = await fetch(
-    `${process.env.stravaActivityEndpoint}?page=${page}&per_page=${pre_page}`,
-    {
-      headers: new Headers({
-        Authorization: `${token_type} ${access_token}`,
-      }),
-      next: { revalidate: 3600 },
-    }
-  );
+  let endpoint = `${process.env.stravaActivityEndpoint}?page=${page}&per_page=${pre_page}`;
+  if (before !== '' && after !== '') {
+    endpoint = `${process.env.stravaActivityEndpoint}?page=${page}&per_page=${pre_page}&before=${before}&after=${after}`;
+  }
+
+  const res = await fetch(endpoint, {
+    headers: new Headers({
+      Authorization: `${token_type} ${access_token}`,
+    }),
+    next: { revalidate: 3600, tags: ['activity'] },
+  });
 
   const data: StravaActivity[] = await res.json();
 
