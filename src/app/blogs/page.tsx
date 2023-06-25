@@ -5,8 +5,8 @@ import { getList } from '@/app/_libs/microcmsClient';
 
 const contents = tv({
   slots: {
-    base: 'mx-auto max-w-screen-lg px-4 flex flex-wrap justify-between gap-4',
-    area: 'm-2 w-[450px]',
+    base: 'mx-auto max-w-screen-lg px-4 flex flex-wrap flex-col gap-4',
+    area: 'm-2',
   },
 });
 
@@ -22,11 +22,7 @@ export default async function Blogs(): Promise<JSX.Element> {
       {data.contents.map((content) => (
         <div key={content.id} className={area()}>
           <Link href={`/blogs/${content.id}`}>
-            <ContentCard
-              title={content.title}
-              image={content.eyecatch}
-              createdAt={content.createdAt}
-            />
+            <ContentCard title={content.title} createdAt={content.createdAt} />
           </Link>
         </div>
       ))}
